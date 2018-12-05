@@ -1,9 +1,9 @@
-Notes:
+Some notes:
 
 Webhook setup:
 1. Get your token from botfather in telegram
 2. Post to 
-"https://api.telegram.org/bot<token>/setWebhook?url=https://pullonkaulademofunctionapp.azurewebsites.net/api/<endpoint>&allowed_updates=["message"]"
+```https://api.telegram.org/bot<token>/setWebhook?url=<functionAppUrl>/api/<endpoint>&allowed_updates=["message"]```
 3. You should now get post messages from messages!
 
 Setting up telegram API key for sending messages:
@@ -11,8 +11,6 @@ Setting up telegram API key for sending messages:
 2. Create a setting under "Application settings" called "TelegramBotApiKey"
 3. Set its value to the key given by botfather
 4. Save it
-
-
 
 
 OPTIONAL:
