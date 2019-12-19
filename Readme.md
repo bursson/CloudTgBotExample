@@ -2,11 +2,11 @@
 
 ## Prerequisites
     1. Function app for .NET core running in Azure
-    2. A telegram bot and its API key given by @BotFather
+    2. A Telegram bot and its API key given by @BotFather
 
 ## How to get things running
 
-Setting up telegram API key for sending messages:
+Setting up Telegram API key for sending messages:
 1. Go to your Function App -> Platform features -> Application settings
 2. Create a setting under "Application settings" called "TelegramBotApiKey"
 3. Set its value to the key given by botfather
@@ -23,11 +23,16 @@ Setting up telegram API key for sending messages:
 
 ### Webhook setup:
 
-1. Get your token from botfather in telegram
+1. Get your token from botfather in Telegram
 2. Post to 
-```https://api.telegram.org/bot<token>/setWebhook?url=<functionAppUrl>/api/<endpoint>&allowed_updates=["message"]```
-3. Powershell command example: ```Invoke-WebRequest -Uri "https://api.telegram.org/bot<botToken>/setWebhook?url=https://<functionAppUrl>.azurewebsites.net/api/<yourEndppoint>&allowed_updates=['message']" -Method POST```
+```https://api.telegram.org/bot<token>/setWebhook?url=<functionAppName>/api/MyTelegramEndpoint&allowed_updates=["message"]```. Remember to replace the token and functionAppName with your personal values. Remember to include the "bot" before your token!
+3. Powershell command example: ```Invoke-WebRequest -Uri "https://api.telegram.org/bot<token>/setWebhook?url=https://<functionAppName>.azurewebsites.net/api/MyTelegramEndpoint&allowed_updates=['message']" -Method POST```
 4. You should now get post messages from messages!
+
+### Security reminders!
+1. If you plan to build a real application and you want to protect it, consider renaming the endpoint to something that is less obvious (change "MyTelegramEndpoint to something else").
+2. Restrict IPs that are allowed to communciate with your API, IPs used by Telegram can be found at https://core.telegram.org/bots/api. Setti
+3. Consider storing the bot API key in Azure Keyvault (more at https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references).
 
 
 ### OPTIONAL:

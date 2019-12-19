@@ -14,16 +14,14 @@ namespace CloudTgBotCore3
     public static class TelegramEndpoint
     {
         [FunctionName("TelegramEndpoint")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "EndpointName")]HttpRequest req, ILogger log)
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "MyTelegramEndpoint")]HttpRequest req, ILogger log)
         {
             log.LogInformation("Starting to process a message");
-            log.LogInformation("Request: {headers}", req.Headers);
             string botApiKey;
             try
             {
                 // Gets a variable, in local environment from local.settings, in Azure from Functions environment variables
                 botApiKey = Environment.GetEnvironmentVariable("TelegramBotApiKey");
-                log.LogInformation(botApiKey);
             }
             catch (Exception)
             {
